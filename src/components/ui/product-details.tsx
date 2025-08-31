@@ -5,12 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MapPin, Phone, Mail, Building, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react"
-import { ReviewForm } from "@/components/ui/review-form"
-import { ReviewList } from "@/components/ui/review-list"
-import { ReviewSummary } from "@/components/ui/review-summary"
-import { useReviews } from "@/hooks/use-reviews"
+import { resolveImageUrl } from "@/lib/utils"
 import type { Product } from "@/types/product"
 
 interface ProductDetailsProps {
@@ -21,9 +17,6 @@ interface ProductDetailsProps {
 export function ProductDetails({ product, onBack }: ProductDetailsProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [copiedField, setCopiedField] = useState<string | null>(null)
-  const [showReviewForm, setShowReviewForm] = useState(false)
-
-  const { reviews, loading: reviewsLoading, addReview, averageRating, totalReviews } = useReviews(product.barcode)
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % product.images.length)
@@ -43,18 +36,7 @@ export function ProductDetails({ product, onBack }: ProductDetailsProps) {
     }
   }
 
-  const handleReviewSubmit = async (reviewData: {
-    rating: number
-    comment: string
-    userName: string
-  }) => {
-    try {
-      await addReview(reviewData)
-      setShowReviewForm(false)
-    } catch (err) {
-      console.error("Error submitting review:", err)
-    }
-  }
+  // Removed mock review system and star ratings
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
@@ -74,7 +56,7 @@ export function ProductDetails({ product, onBack }: ProductDetailsProps) {
               <div className="space-y-4">
                 <div className="relative">
                   <img
-                    src={product.images[currentImageIndex] || "/placeholder.svg?height=400&width=500"}
+                    src={resolveImageUrl(product.images[currentImageIndex]) || "/placeholder.svg?height=400&width=500"}
                     alt={product.name}
                     className="w-full h-96 object-cover rounded-lg"
                   />
@@ -113,7 +95,7 @@ export function ProductDetails({ product, onBack }: ProductDetailsProps) {
                         onClick={() => setCurrentImageIndex(index)}
                       >
                         <img
-                          src={image || "/placeholder.svg?height=64&width=64"}
+                          src={resolveImageUrl(image) || "/placeholder.svg?height=64&width=64"}
                           alt=""
                           className="w-full h-full object-cover"
                         />
@@ -253,29 +235,36 @@ export function ProductDetails({ product, onBack }: ProductDetailsProps) {
               </div>
             </CardContent>
           </Card>
+
+          {/* Backend Comments */}
+          {product.comments && product.comments.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Bình luận từ hệ thống</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {product.comments.map((c) => (
+                  <div key={c.id} className="flex items-start gap-4 p-3 rounded-md border">
+                    <img
+                      src={resolveImageUrl(c.imageUrl)}
+                      alt="comment"
+                      className="w-16 h-16 rounded-md object-cover flex-shrink-0"
+                    />
+                    <div className="flex-1 space-y-1">
+                      <p className="text-sm">{c.content}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(c.createdAt).toLocaleString("vi-VN")}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
 
-      {/* Reviews and Rating Section */}
-      <Tabs defaultValue="reviews" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="reviews">Đánh giá ({totalReviews})</TabsTrigger>
-          <TabsTrigger value="write-review">Viết đánh giá</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="reviews" className="space-y-6">
-          <ReviewSummary reviews={reviews} />
-          <ReviewList reviews={reviews} averageRating={averageRating} totalReviews={totalReviews} />
-        </TabsContent>
-
-        <TabsContent value="write-review">
-          <ReviewForm
-            productBarcode={product.barcode}
-            onSubmit={handleReviewSubmit}
-            onCancel={() => setShowReviewForm(false)}
-          />
-        </TabsContent>
-      </Tabs>
+      {/* Reviews removed as requested */}
     </div>
   )
 }

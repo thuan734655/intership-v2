@@ -7,12 +7,14 @@ export interface ProductOwner {
 }
 
 export interface Product {
+  id?: string;
   name: string;
   price: string;
   barcode: string;
   country: string;
   images: string[];
   owner: ProductOwner;
+  comments?: ProductComment[];
 }
 
 export interface ProductApiResponse {
@@ -28,4 +30,12 @@ export interface ProductReview {
   rating: number;
   comment: string;
   createdAt: string;
+}
+
+export interface ProductComment {
+  id: string;
+  productId: string;
+  content: string;
+  imageUrl: string;
+  createdAt: string; // ISO string
 }

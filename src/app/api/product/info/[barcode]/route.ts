@@ -1,7 +1,10 @@
 import type { NextRequest } from "next/server";
 
-export async function GET(_req: NextRequest, context: { params: { barcode: string } }) {
-  const { barcode } = context.params;
+export async function GET(
+  _req: NextRequest,
+  context: { params: Promise<{ barcode: string }> }
+) {
+  const { barcode } = await context.params;
 
   const backendBase = process.env.BACKEND_URL || "http://localhost:3000";
   const targetUrl = `${backendBase.replace(/\/$/, "")}/product/info/${encodeURIComponent(barcode)}`;

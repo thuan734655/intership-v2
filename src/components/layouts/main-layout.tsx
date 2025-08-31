@@ -1,3 +1,5 @@
+"use client"
+
 import type { ReactNode } from "react"
 import { Button } from "../ui/button"
 import { QrCode, Search, History, Star } from "lucide-react"
