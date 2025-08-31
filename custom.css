@@ -1,0 +1,349 @@
+/* Custom CSS for Product Scanner Application */
+
+/* Enhanced animations */
+@keyframes scanner-line {
+  0% { transform: translateY(-100%); opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0.5; }
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(132, 204, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(132, 204, 22, 0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* General enhancements - make visible */
+body {
+  background: #285c38 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Force visible styling */
+.card-hover-effect {
+  transition: all 0.3s ease !important;
+  border: 1px solid #e5e7eb !important;
+  background-color: white !important;
+  border-radius: 0.5rem !important;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  border-color: #d1d5db !important;
+}
+
+/* Enhanced button styling */
+.enhanced-button {
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  background-color: #166534 !important;
+  color: white !important;
+}
+
+.enhanced-button:hover {
+  transform: translateY(0) !important;
+  box-shadow: none !important;
+  opacity: 0.9 !important;
+}
+
+/* Scanner enhancements */
+.scanner-container video {
+  border-radius: 0.75rem !important;
+  border: 2px solid #15803d !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.scanner-overlay {
+  animation: pulse-border 2s infinite !important;
+}
+
+.scanner-line {
+  animation: scanner-line 2s infinite linear !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, rgba(132, 204, 22, 0) 0%, rgba(132, 204, 22, 1) 50%, rgba(132, 204, 22, 0) 100%) !important;
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.8) !important;
+}
+
+/* Image upload area */
+.upload-area {
+  transition: all 0.3s ease !important;
+  border-color: #d1d5db !important;
+}
+
+.upload-area:hover {
+  border-color: #84cc16 !important;
+  background-color: rgba(132, 204, 22, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(132, 204, 22, 0.1) !important;
+}
+
+/* Header enhancements */
+header {
+  background: white !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  box-shadow: none !important;
+  padding: 1rem 0 !important;
+}
+
+header h1 {
+  color: #166534 !important;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+header p {
+  color: #6b7280 !important;
+  font-size: 0.9rem !important;
+}
+
+/* Sidebar enhancements */
+aside {
+  background: white !important;
+  box-shadow: none !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+/* Alert animations */
+.alert {
+  animation: fade-in 0.3s ease-out !important;
+  border-left: 4px solid #ef4444 !important;
+}
+
+/* Success result highlight */
+.success-result {
+  border-left: 4px solid #84cc16 !important;
+  background-color: rgba(132, 204, 22, 0.1) !important;
+  padding: 1.5rem !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  animation: fade-in 0.5s ease-out !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  header h1 {
+    font-size: 2rem !important;
+  }
+  
+  header p {
+    font-size: 1rem !important;
+  }
+  
+  aside {
+    width: 100% !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: auto !important;
+    z-index: 50 !important;
+    border-top: 1px solid #e5e7eb !important;
+    border-right: none !important;
+    background: white !important;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  aside nav {
+    display: flex !important;
+    justify-content: space-around !important;
+    padding: 0.5rem !important;
+  }
+  
+  aside nav button {
+    padding: 0.5rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  main {
+    margin-bottom: 4rem !important;
+    padding: 1rem !important;
+  }
+}
+
+/* Additional styling for better visibility */
+.Card {
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.Card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Input styling */
+input:focus {
+  border-color: #15803d !important;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.1) !important;
+  outline: none !important;
+}
+
+/* Loading states */
+.loading-spinner {
+  border: 3px solid #f3f4f6 !important;
+  border-top: 3px solid #15803d !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg) !important; }
+  100% { transform: rotate(360deg) !important; }
+}
+
+/* Card enhancements */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.1), 0 8px 10px -6px rgba(21, 128, 61, 0.1);
+}
+
+/* Scanner enhancements */
+.scanner-container video {
+  border-radius: 0.75rem;
+  border: 2px solid var(--primary);
+  transition: border-color 0.3s ease;
+}
+
+.scanner-overlay {
+  animation: pulse-border 2s infinite;
+}
+
+.scanner-line {
+  animation: scanner-line 2s infinite linear;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(132, 204, 22, 0) 0%, rgba(132, 204, 22, 1) 50%, rgba(132, 204, 22, 0) 100%);
+}
+
+/* Image upload area */
+.upload-area {
+  transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+  border-color: var(--accent);
+  background-color: rgba(132, 204, 22, 0.05);
+}
+
+/* Button enhancements */
+.enhanced-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.enhanced-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.enhanced-button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Header enhancements */
+header {
+  background: linear-gradient(to right, var(--card), var(--background));
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Sidebar enhancements */
+aside {
+  background: linear-gradient(to bottom, var(--sidebar), var(--background));
+  transition: all 0.3s ease;
+}
+
+/* Alert animations */
+.alert {
+  animation: fade-in 0.3s ease-out;
+}
+
+/* Success result highlight */
+.success-result {
+  border-left: 4px solid var(--accent);
+  background-color: rgba(132, 204, 22, 0.1);
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+  animation: fade-in 0.5s ease-out;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  aside {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    z-index: 50;
+    border-top: 1px solid var(--border);
+    border-right: none;
+  }
+  
+  aside nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+  }
+  
+  aside nav button {
+    padding: 0.5rem;
+  }
+  
+  main {
+    margin-bottom: 4rem;
+  }
+}
