@@ -1,5 +1,5 @@
 {
-  "/api/product/info/[barcode]/route": "app/api/product/info/[barcode]/route.js",
-  "/product/[barcode]/page": "app/product/[barcode]/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/history/page": "app/history/page.js",
+  "/search/page": "app/search/page.js"
 }
